@@ -3,37 +3,38 @@ import Countenr from './counter';
 
 
 class Couters extends Component {
-    state = { 
-        counrers: [
-          {id:1, value: 3 },
-          {id:2, value: 0 },
-          {id:3, value: 0 },
-          {id:4, value: 0 }
-        ]
-     } ;
-
-
-handledDelet = counreid => {
-const counrers= this.state.counrers.filter(c => c.id !== counreid)
-this.setState({counrers})
-};    
-
-
     render() { 
+      const {onReset, counters,onDelete, onIncrement} = this.props;
+
 
         return (
-        <div>
-        {this.state.counrers.map(counter => (
+          <div>
+           
+        <button onClick={onReset} className="bth btn-primary bth-sm m2">Reser</button>   {/* הייתה פה פעם שיטה זה שייך לכל הכפתורים לכן זה במחלקה הזו  */}
+
+        {counters.map(counter => (
         <Countenr 
         key={counter.id} 
-        onDelete={this.handledDelet} 
+        onDelete={onDelete} 
+        onIncrement={onIncrement}   // onIncremrnt={this.handleIncrement} // ----    //לאבא יש שיטה והוא כבר ישנה אני רק יביא לו את הזה הספציפי
         counter={counter}
         /> 
-           ))}
+           ))} 
+
         </div>
         );
-
+        
      }
+
 }
- 
+   
 export default Couters;
+
+
+
+
+// key={counter.id} 
+// onDelete={this.handledDelet} 
+// onIncremrnt={this.handleIncrement}
+// counter={counter}
+// /> 
